@@ -29,37 +29,6 @@ namespace Ecommerce.Controllers
 
 			return View();
 		}
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult Index(IndexVM VM)
-		{
-
-			AddImageToTheProduct(VM.Files!);
-
-			return RedirectToAction("Index");
-		}
-
-
-		public void AddImageToTheProduct(IFormFileCollection files)
-		{
-			var targetProduct = _dbContext.Products?.Find(5);
-
-
-			foreach(var file in files)
-			{
-				var newImage = new MyImage()
-				{
-					Name = file.FileName,
-					ImageURL = FileHelpers.GetImageUrl("Images/", file, _webHostEnvironment),
-					ProductId = targetProduct?.Id
-				};
-
-				_dbContext.MyImages?.Add(newImage);
-			}
-
-			_dbContext.SaveChanges();
-
-		}
 
 
 	}
