@@ -23,8 +23,6 @@ namespace Ecommerce.Models
 		[MaxLength(20)]
 		public string? CurrentPrice { get; set; }
 		public int? StockQuantity { get; set; }
-		[Required]
-		public bool IsColorable { get; set; }
 
 
 		public ICollection<MyImage>? MyImages { get; set; }
