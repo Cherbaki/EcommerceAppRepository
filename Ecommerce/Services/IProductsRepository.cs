@@ -6,6 +6,7 @@ namespace Ecommerce.Services
 	{
 		public IEnumerable<Product>? GetProductsFully();
 		public Task<Product?> GetFullProductById(int productId);
+		public int? GetStockQuantity(int productId);
 
     }
 }

@@ -1,4 +1,5 @@
 using Ecommerce.Data;
+using Ecommerce.Helpers;
 using Ecommerce.Repositories;
 using Ecommerce.Services;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,9 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
 	builder.Configuration.GetConnectionString("DC")
 ));
 
-builder.Services.AddTransient<IProductsRepository, ProductsRepository>();
+builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IUserHelper, UserHelper>();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 

@@ -40,7 +40,7 @@ namespace Ecommerce.Controllers
 			return View(VM);
 		}
 
-
+		[HttpGet]
 		public async Task<IActionResult> ProductPage(int productId)
 		{
 			var targetProduct = await _productsRepository.GetFullProductById(productId);
@@ -53,10 +53,44 @@ namespace Ecommerce.Controllers
 
                 return RedirectToAction("ErrorPage", "Errors", errorVM);
             }
-			
 
-            return View(targetProduct);
+			var VM = new ProductPageVM
+			{
+				Product = targetProduct,
+			};
+
+
+            return View(VM);
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult ProductPage(ProductPageVM VM)
+		{
+
+
+
+			return NotFound();
 		}
 
+		[HttpGet]
+		public IActionResult ValidateQuantityAgainstStockQuantity(int productId,int givenQuantity)
+		{
+			var stockQuantity = _productsRepository.GetStockQuantity(productId);
+            if (stockQuantity == null)
+            {
+                var errorVM = new ErrorViewModel()
+                {
+                    Message = "Product is not found in the database"
+                };
+
+                return RedirectToAction("ErrorPage", "Errors", errorVM);
+            }
+
+
+            if (givenQuantity > stockQuantity)
+				return Json(new { success = false });
+			
+			return Json(new { success = true });
+        }
 	}
 }

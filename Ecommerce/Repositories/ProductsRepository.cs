@@ -28,5 +28,12 @@ namespace Ecommerce.Repositories
                             .FirstOrDefaultAsync(pr => pr.Id == productId);
         }
 
+        public int? GetStockQuantity(int productId)
+        {
+            var targetProduct = _dbContext.Products?.Find(productId);
+
+            return targetProduct?.StockQuantity;
+        }
+
     }
 }
