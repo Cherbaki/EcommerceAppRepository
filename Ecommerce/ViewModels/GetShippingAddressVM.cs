@@ -1,13 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Metrics;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Ecommerce.Models
+namespace Ecommerce.ViewModels
 {
-	public class ShippingAddress
+	public class GetShippingAddressVM
 	{
-		[Key]
-		public Guid Id { get; set; }
 		[Required]
 		[MaxLength(20)]
 		public string? FirstName { get; set; }
@@ -19,18 +15,19 @@ namespace Ecommerce.Models
 		public string? Address { get; set; }
 		[Required]
 		[MaxLength(50)]
+		public string? Country { get; set; }
+		[Required]
+		[MaxLength(50)]
 		public string? City { get; set; }
 		[Required]
 		[MaxLength(10)]
 		public string? PostCode { get; set; }
 		[Required]
 		[MaxLength(50)]
-		public string? Country { get; set; }
+		public string? Email { get; set; }
 
 
 
-		[ForeignKey("MyOrder")]
-		public int MyOrderId { get; set; }
-		public MyOrder? MyOrder { get; set; }
+		public int OrderId { get; set; }
 	}
 }

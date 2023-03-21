@@ -21,15 +21,18 @@ namespace Ecommerce.Repositories
         public void AddUser(string UserId)
         {
             var newUser = new User { Id = UserId };
-
+            
             _dbContext.Users?.Add(newUser);
             _dbContext.SaveChanges();
         }
         public User? GetFullUser(string UserId)
         {
             var targetUser = _dbContext.Users?
-                                .Include(us => us.MyOrders)
+                                .Include(us => us.MyOrders)?
+                                .Include(us => us.MyItems)!
+                                    .ThenInclude(it => it.Product)
                                 .FirstOrDefault(us => us.Id == UserId);
+
             if (targetUser == null)
                 return null;
 

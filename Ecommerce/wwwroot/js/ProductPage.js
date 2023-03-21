@@ -6,17 +6,19 @@
     $('#BuyButtonId').click(() => {
         if (!quantityIsValid)
             return;
-        alert('success');
+
+        ValidateQuantity('RealBuyButtonId');
     });
     $('#AddToCartId').click(() => {
         if (!quantityIsValid)
             return;
-        alert('success');
+
+        ValidateQuantity('RealAddToCartButtonId');
     });
 
     ValidateQuantity();
 
-    function ValidateQuantity() {
+    function ValidateQuantity(callerId) {
 
         let ProductID = $('#ProductIdHeaderId').text();
         let specifiedQuantity = $('#QuantityIFId').val();
@@ -26,6 +28,7 @@
             url: '/Product/ValidateQuantityAgainstStockQuantity',
             data: { productId: ProductID, givenQuantity: specifiedQuantity },
             success: function (response) {
+
                 var quantityIFSpan = $('#QuantityIFSpanId');
 
                 if (!response.success) {
@@ -36,6 +39,12 @@
                     $('#QuantityIFSpanId').text('');
                     quantityIsValid = true;
                 }
+
+                if (callerId === 'RealBuyButtonId')
+                    $('#RealBuyButtonId').click();
+                else if (callerId === 'RealAddToCartButtonId')
+                    $('#RealAddToCartButtonId').click();
+
             }
         });
 

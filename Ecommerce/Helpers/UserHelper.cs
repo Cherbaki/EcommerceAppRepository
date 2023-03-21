@@ -18,13 +18,20 @@ namespace Ecommerce.Helpers
         public User? GetCurrentUser(HttpRequest request, HttpResponse response)
         {
             var userId = CheckAndGetUserId(request, response);
+
             return _usersRepository.GetFullUser(userId);
+        }
+        public string? CreateAndGetUserId(HttpRequest request)
+        {
+            string? userId = request.Cookies["UserId"];
+
+            return userId;
         }
 
 
         private string CheckAndGetUserId(HttpRequest request,HttpResponse response)
         {
-            var userId = GetUserId(request); 
+            var userId = CreateAndGetUserId(request); 
             if (userId == null)
             {
                 userId = SaveCookiesForUserId(response);
@@ -45,13 +52,6 @@ namespace Ecommerce.Helpers
             _usersRepository.AddUser(newId);
 
             return newId;
-        }
-
-        private string? GetUserId(HttpRequest request)
-        {
-            string? userId = request.Cookies["UserId"];
-
-            return userId;
         }
 
     }

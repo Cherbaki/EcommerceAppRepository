@@ -1,7 +1,8 @@
 ﻿using Ecommerce.Helpers;
+using Ecommerce.Models;
 using Ecommerce.Services;
+using Ecommerce.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Ecommerce.Controllers
 {
@@ -14,16 +15,29 @@ namespace Ecommerce.Controllers
         {
             _userHelper = userHelper;
         }
-         
+        
 
         public IActionResult Cart()
         {
-            //Gets/Saves user from/in the database.
+            //Gets(if needed creates and Saves) user from the database.
             var currentUser = _userHelper.GetCurrentUser(Request,Response);
+            if(currentUser == null)
+            {
+                var errorVM = new ErrorViewModel()
+                {
+                    Message = "User is not found"
+                };
 
+                return RedirectToAction("ErrorPage", "Errors", errorVM);
+            }
 
+            var VM = new CartVM
+            {
+                CurrentUser = currentUser,
+                CartItems = currentUser.MyItems?.Where(it => it.IsInCart).ToList()
+			};
 
-            return View();
+            return View(VM);
         }
         
         

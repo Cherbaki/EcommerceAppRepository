@@ -1,20 +1,22 @@
 ﻿using Ecommerce.Data;
-using Ecommerce.Helpers;
 using Ecommerce.Models;
 using Ecommerce.Services;
 using Ecommerce.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 
 namespace Ecommerce.Controllers
 {
 	public class ProductController : Controller
 	{
 		private readonly IProductsRepository _productsRepository;
+		private readonly IUserHelper _userHelper;
 
 
-        public ProductController(AppDbContext dbContext, IProductsRepository productsRepository)
+        public ProductController(AppDbContext dbContext, IProductsRepository productsRepository, IUserHelper userHelper)
         {
 			_productsRepository = productsRepository;
+			_userHelper = userHelper;
 		}
 
 
@@ -39,11 +41,10 @@ namespace Ecommerce.Controllers
 
 			return View(VM);
 		}
-
 		[HttpGet]
-		public async Task<IActionResult> ProductPage(int productId)
+		public async Task<IActionResult> ProductPage(int productId,string? message = null)
 		{
-			var targetProduct = await _productsRepository.GetFullProductById(productId);
+			var targetProduct = await _productsRepository.GetFullProductByIdAsync(productId);
 			if (targetProduct == null)
 			{
                 var errorVM = new ErrorViewModel()
@@ -54,25 +55,57 @@ namespace Ecommerce.Controllers
                 return RedirectToAction("ErrorPage", "Errors", errorVM);
             }
 
-			var VM = new ProductPageVM
+            var VM = new ProductPageVM
 			{
 				Product = targetProduct,
-			};
-
+				ProductId = targetProduct.Id,
+				MessageFromPayment = message
+            };			
 
             return View(VM);
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult ProductPage(ProductPageVM VM)
+		public async Task<IActionResult> ProductPage(ProductPageVM VM)
 		{
+			try {
+                //Posted result might have some problem and to return to the view we need the product again
+                VM.Product = (await _productsRepository.GetFullProductByIdAsync(VM.ProductId))!;
 
+                //Applay server side validation to the selected quantity
+                var json = ValidateQuantityAgainstStockQuantity(VM.ProductId, VM.SelectedQuantity).ToJson().ToString();
+				var result = json.Contains("true");
+				if (!result)
+				{
+					VM.MessageFromPayment = "There is not enough item in the stock";
 
+                    return View(VM);
+                }
 
-			return NotFound();
-		}
+				if (!ModelState.IsValid)
+					return View(VM);
 
-		[HttpGet]
+				//If the user doesn't exist it'll create one
+				_userHelper.GetCurrentUser(Request,Response);
+
+				if (VM.Caller == "Buy")
+					return RedirectToAction("CreateItem", "Payment", new { productId = VM.ProductId, quantity = VM.SelectedQuantity });
+                
+				return RedirectToAction("AddItemToCart", "Payment", new { productId = VM.ProductId, quantity = VM.SelectedQuantity });
+            }
+            catch
+			{
+                var errorVM = new ErrorViewModel()
+                {
+                    Message = "Errro occured while processing the specified quanity"
+                };
+
+                return RedirectToAction("ErrorPage", "Errors", errorVM);
+            }
+
+        }
+
+		[HttpGet]//This action here is for the AJAX which uses Json to validate the selected quantity for the product
 		public IActionResult ValidateQuantityAgainstStockQuantity(int productId,int givenQuantity)
 		{
 			var stockQuantity = _productsRepository.GetStockQuantity(productId);
@@ -87,7 +120,7 @@ namespace Ecommerce.Controllers
             }
 
 
-            if (givenQuantity > stockQuantity)
+            if (givenQuantity > stockQuantity || givenQuantity <= 0)
 				return Json(new { success = false });
 			
 			return Json(new { success = true });

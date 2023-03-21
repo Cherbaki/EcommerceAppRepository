@@ -1,3 +1,28 @@
 ﻿@model CartVM
 
 
+@if(Model.CartItems! == null || Model.CartItems!.Count() >= 1){
+	<table class="table-bordered">
+		<tr>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Category</th>
+			<th>Quantity</th>
+		</tr>
+		@foreach(var item in Model.CartItems!)
+		{
+			<tr>
+				<td>@item.Name</td>
+				<td>@item.Product!.CurrentPrice $</td>
+				<td>@item.Product.Category</td>
+				<td>@item.Quantity</td>
+			</tr>
+		}
+	</table>
+
+	<a asp-action="CheckOut" asp-controller="Payment" >Check Out</a>
+
+}
+else{
+	<h1>The cart is empty</h1>
+}

@@ -4,6 +4,8 @@ namespace Ecommerce.Services
 {
     public interface IUserHelper
     {
+        //Uses the cookies and userRepository to return the full user
         public User? GetCurrentUser(HttpRequest request, HttpResponse response);
+        public string? CreateAndGetUserId(HttpRequest request);
     }
 }

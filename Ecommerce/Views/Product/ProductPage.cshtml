@@ -4,12 +4,17 @@
     ViewData["Title"] = "ProductPage";
 }
 
+@if(Model.MessageFromPayment != null){
+    <div>
+        <span class="text text-danger">@Model.MessageFromPayment</span>
+    </div>
+}
 
 
 <h1>ProductPage</h1>
 
 <div>
-    <h1 id="ProductIdHeaderId" style="display:none;">@Model.Product.Id</h1>
+    <h1 id="ProductIdHeaderId" style="display:none;">@Model.Product?.Id</h1>
     <h4>Product</h4>
     <hr />
     <dl class="row">
@@ -60,9 +65,9 @@
     <form id="MainFormId" method="post">
         <label asp-for="SelectedQuantity">Quantity</label>
         <input id="QuantityIFId" asp-for="SelectedQuantity" />
-        <span class="text text-danger" id="QuantityIFSpanId" asp-validation-for="SelectedQuantity"></span>
-        <button id="RealBuyButtonId" asp-action="ProductPage" asp-route-Caller="Buy" type="submit" style="display:none;"></button>
-        <button id="RealAddToCartButtonId" asp-action="ProductPage" asp-route-Caller="AddToCart" type="submit" style="display:none;"></button>
+        <span class="text text-danger" id="QuantityIFSpanId"></span>
+        <button id="RealBuyButtonId" asp-action="ProductPage" asp-route-Caller="Buy" asp-route-ProductId="@Model.ProductId" type="submit" style="display:none;"></button>
+        <button id="RealAddToCartButtonId" asp-action="ProductPage" asp-route-Caller="AddToCart" asp-route-ProductId="@Model.ProductId" type="submit" style="display:none;"></button>
     </form>
 
     <div style="display:flex;justify-content:start;align-content:start;flex-wrap:wrap;border:solid black 5px;">

@@ -16,6 +16,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<IUserHelper, UserHelper>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 

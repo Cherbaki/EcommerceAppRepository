@@ -1,6 +1,7 @@
 ﻿using Ecommerce.Data;
 using Ecommerce.Models;
 using Ecommerce.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Repositories
@@ -21,7 +22,7 @@ namespace Ecommerce.Repositories
             return _dbContext.Products?.Include(pr => pr.MyImages);
         }
 
-        public async Task<Product?> GetFullProductById(int productId)
+        public async Task<Product?> GetFullProductByIdAsync(int productId)
         {
             return await _dbContext.Products!
                             .Include(pr => pr.MyImages)!
@@ -35,5 +36,16 @@ namespace Ecommerce.Repositories
             return targetProduct?.StockQuantity;
         }
 
-    }
+        //We have an Action with an identical implementation which is used by the front-end,
+        //When this one is used by the backend to validate the quantity validity at different states
+        //Of the payment
+		public bool ValidateQuantityAgainstStockQuantity(int productId, int givenQuantity)
+		{
+			var stockQuantity = GetStockQuantity(productId);
+            if(stockQuantity != null && givenQuantity <= stockQuantity)
+				return true;
+			return false;
+		}
+
+	}
 }
