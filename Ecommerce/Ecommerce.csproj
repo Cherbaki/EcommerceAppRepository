@@ -21,4 +21,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\ASP.Net Core\Mubepo\PayPalSdk\Checkout-NET-SDK-develop\Checkout-NET-SDK-develop\PayPalCheckoutSdk\PayPalCheckoutSdk.csproj" />
+  </ItemGroup>
+
 </Project>

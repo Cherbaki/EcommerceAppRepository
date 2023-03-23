@@ -9,8 +9,10 @@ namespace Ecommerce.Services
         public bool UpdateUser(User user);
         public Task<MyOrder?> GetOrderByIdAsync(int orderId);
         public Task<bool> AddShippingAddressAsync(ShippingAddress shippingAddress);
-        public Task<bool> UpdateMyOrder(MyOrder myOrder);
+        public Task<bool> UpdateMyOrderAsync(MyOrder myOrder);
         public Task<MyOrder?> GetOrderWithItemsByIdAsync(int orderId);
-
+        public Task<MyOrder?> GetFullOrderByIdAsync(int orderId);
+        public bool DeleteItem(MyItem item);
+        public void SaveChangesInTheDatabase();
 	}
 }

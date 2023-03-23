@@ -93,7 +93,7 @@ namespace Ecommerce.Repositories
                 return false;
             }
 		}
-        public async Task<bool> UpdateMyOrder(MyOrder myOrder)
+        public async Task<bool> UpdateMyOrderAsync(MyOrder myOrder)
         {
             try
             {
@@ -106,6 +106,36 @@ namespace Ecommerce.Repositories
                 return false;
             }
         }
-        
+        public async Task<MyOrder?> GetFullOrderByIdAsync(int orderId)
+        {
+			try
+			{
+				return await _dbContext.MyOrders!
+										.Include(or => or.MyItems)!
+                                            .ThenInclude(it => it.Product)
+                                        .Include(or => or.ShippingAddress)
+										.FirstOrDefaultAsync(or => or.Id == orderId);
+			}
+			catch
+			{
+				return null;
+			}
+		}
+        public bool DeleteItem(MyItem item)
+        {
+            try
+            {
+                _dbContext.MyItems?.Remove(item);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public void SaveChangesInTheDatabase()
+        {
+            _dbContext.SaveChanges();
+        }
     }
 }

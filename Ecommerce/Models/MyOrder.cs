@@ -16,7 +16,8 @@ namespace Ecommerce.Models
 		public DateTime CreationTime { get; set; } = DateTime.Now;
 		[MaxLength(20)]
 		public string? PaymentType { get; set; }
-
+		[MaxLength(20)]
+		public string? PurchaseOption { get; set; }//Can be either the ChekcOut or Buy(for direct by option)
 
 
 		public ShippingAddress? ShippingAddress { get; set; }

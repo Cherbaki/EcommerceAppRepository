@@ -39,5 +39,26 @@ namespace Ecommerce.Repositories
             return targetUser;
         }
 
+        public User? GetUser(string UserId)
+        {
+			var targetUser = _dbContext.Users?.Find(UserId);
+
+			return targetUser;
+		}
+
+        public bool UpdateUser(User user)
+        {
+            try
+            {
+                _dbContext.Users?.Update(user);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

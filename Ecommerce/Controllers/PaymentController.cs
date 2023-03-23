@@ -3,6 +3,7 @@ using Ecommerce.Services;
 using Ecommerce.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 
 namespace Ecommerce.Controllers
@@ -71,7 +72,8 @@ namespace Ecommerce.Controllers
             //Creating not approved order, Shipping address and email is assigned when the order is captured
             var newOrder = new MyOrder()
             {
-                MyItems = items
+                MyItems = items,
+                PurchaseOption = "Buy"
             };
 
             NewItem.MyOrder = newOrder;
@@ -262,7 +264,8 @@ namespace Ecommerce.Controllers
             //Creating not approved order, Shipping address and email is assigned when the order is captured
             var newOrder = new MyOrder()
             {
-                MyItems = items
+                MyItems = items,
+                PurchaseOption = "CheckOut"
             };
             foreach (var item in newOrder.MyItems)
             {
@@ -329,15 +332,17 @@ namespace Ecommerce.Controllers
                 LastName = gsaVM.LastName,
                 Address = gsaVM.Address,
                 City = gsaVM.City,
+                Country = gsaVM.Country,
                 PostCode = gsaVM.PostCode,
                 MyOrderId = gsaVM.OrderId//It won't be null it's already validated
             };
 
             //Update the Email field of the targetOrder
             targetOrder.Email = gsaVM.Email;
+            targetOrder.ShippingAddress = newShippingAddress;
 
             await _paymentRepository.AddShippingAddressAsync(newShippingAddress);
-            await _paymentRepository.UpdateMyOrder(targetOrder);
+            await _paymentRepository.UpdateMyOrderAsync(targetOrder);
 
 
             return RedirectToAction("ChoosePaymentType", new { orderId = targetOrder.Id });
@@ -349,7 +354,7 @@ namespace Ecommerce.Controllers
 			{
 				var errorVM = new ErrorViewModel()
 				{
-					Message = "Target order is not found"
+					Message = "Order is not found"
 				};
 				return RedirectToAction("ErrorPage", "Errors", errorVM);
 			}
@@ -407,7 +412,7 @@ namespace Ecommerce.Controllers
 
 				targetOrder.PaymentType = paymentType;
 
-                await _paymentRepository.UpdateMyOrder(targetOrder);
+                await _paymentRepository.UpdateMyOrderAsync(targetOrder);
 
                 if (paymentType == "PayPalPay")
                     return RedirectToAction(paymentType, "PayPal", targetOrder);
@@ -423,6 +428,48 @@ namespace Ecommerce.Controllers
 				};
 				return RedirectToAction("ErrorPage", "Errors", errorVM);
 			}
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> OrderResult(string info, int orderId)
+		{
+			if (info == "")
+			{
+				var errorVM = new ErrorViewModel()
+				{
+					Message = "Orders result lacks the information!"
+				};
+				return RedirectToAction("ErrorPage", "Errors", errorVM);
+			}
+
+
+            var targetOrder = await _paymentRepository.GetFullOrderByIdAsync(orderId);
+            if(targetOrder == null && info != "Canceled")
+            {
+				var errorVM = new ErrorViewModel()
+				{
+					Message = "Order is not found!"
+				};
+				return RedirectToAction("ErrorPage", "Errors", errorVM);
+			}
+
+			var newVM = new OrderResultVM()
+			{
+				Information = info,
+				ApprovedOrder = targetOrder,   
+			};
+
+			if (info == "Canceled" && targetOrder == null)
+				newVM.Approved = false;
+			else
+			{
+				newVM.Approved = true;
+
+				//_emailHelper.SendOrderEmail(orderId);
+			}
+
+
+			return View(newVM);
 		}
 
 	}

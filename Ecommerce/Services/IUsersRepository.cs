@@ -6,5 +6,7 @@ namespace Ecommerce.Services
     {
         public void AddUser(string UserId);
         public User? GetFullUser(string UserId);
-    }
+        public User? GetUser(string UserId);
+        public bool UpdateUser(User user);
+	}
 }

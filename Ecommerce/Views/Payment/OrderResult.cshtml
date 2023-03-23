@@ -1,0 +1,35 @@
+﻿@model Ecommerce.ViewModels.OrderResultVM
+
+@{
+    ViewData["Title"] = "OrderResult";
+}
+
+<div>
+    @if (@Model.Approved)
+    {
+        <h1 class="text text-success">@Model.Information</h1>
+
+        <h2>@Model.ApprovedOrder!.CreationTime</h2>
+        <h2>@Model.ApprovedOrder.PaymentType</h2>
+        <h2>@Model.ApprovedOrder.ShippingAddress!.Address</h2>
+        <h2>@Model.ApprovedOrder.ShippingAddress.City</h2>
+        <h2>@Model.ApprovedOrder.ShippingAddress.PostCode</h2>
+        <div>
+            @foreach(var item in @Model.ApprovedOrder!.MyItems!)
+            {
+                <div>
+                    <h3>@item.Name</h3>
+                    <h3>@item.Quantity</h3>
+                    <h3>@item.UnitAmountValue</h3>
+                    <h3>@item.CurrencyCode</h3>
+                    <h3>@item.ShippingValue</h3>
+                </div>
+            }
+        </div>
+
+    }
+    else
+    {
+        <h1 class="text text-danger">@Model.Information</h1>
+    }
+</div>
