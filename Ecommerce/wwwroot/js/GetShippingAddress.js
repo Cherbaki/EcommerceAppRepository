@@ -39,13 +39,18 @@
 
         if (country && city) {
 
+            $('#CountrySpanId').text("");
+            $('#CitySpanId').text("");
+
             //Assign the selected values to the real input fields
             $('#RealCountryIF').val(country);
             $('#RealCityIF').val(city);
 
-            $('form').submit();
+
+            $('#RealSubmitFormButtonId').submit();
         } else {
-            alert('Please select a country and city.');
+            $('#CountrySpanId').text("Please select the country");
+            $('#CitySpanId').text("Please select the city");
         }
     });
 });

@@ -32,7 +32,7 @@
                 <select id="country">
                   <option value=""></option>
                 </select>
-                <span asp-validation-for="Country" class="text-danger"></span>
+                <span id="CountrySpanId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="City" class="control-label"></label>
@@ -40,7 +40,7 @@
                 <select id="city">
                   <option value=""></option>
                 </select>
-                <span asp-validation-for="City" class="text-danger"></span>
+                <span id="CitySpanId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PostCode" class="control-label"></label>
@@ -54,7 +54,8 @@
             </div>
 
             <div class="form-group">
-                <input id="SubmitFormButtonId" type="submit" value="Submit" class="btn btn-primary" />
+                <input id="RealSubmitFormButtonId" type="hidden" value="Submit" class="btn btn-primary" />
+                <a id="SubmitFormButtonId" class="btn btn-primary">Submit</a>
             </div>
         </form>
     </div>

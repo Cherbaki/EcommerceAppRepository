@@ -199,7 +199,7 @@ namespace Ecommerce.Controllers
 					purchasedCartItems = true;
 				}
 				else if (newOrder.PurchaseOption == "Buy")
-					purchasedCartItems = true;
+					purchasedCartItems = false;
 				else
 				{
 					var errorVM = new ErrorViewModel()

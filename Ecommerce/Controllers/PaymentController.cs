@@ -287,7 +287,6 @@ namespace Ecommerce.Controllers
                 OrderId = orderId
             };
 
-
             return View(gsaVM);
         }
         [HttpPost]
