@@ -126,6 +126,7 @@ namespace Ecommerce.Repositories
             try
             {
                 _dbContext.MyItems?.Remove(item);
+                _dbContext.SaveChanges();
                 return true;
             }
             catch
@@ -137,5 +138,37 @@ namespace Ecommerce.Repositories
         {
             _dbContext.SaveChanges();
         }
-    }
+		public (bool wasValid, string? message) CheckAndChangeMyItemsQuantityFromStock(ref MyItem item)
+		{
+			var targetProduct = _dbContext.Products?.Find(item.ProductId);
+
+			if (targetProduct == null)
+				throw new Exception("Product of the given item is not found");
+
+			//Validating Quantity
+			int? realStockQuantity = targetProduct.StockQuantity;
+
+			if (realStockQuantity == null)
+				throw new Exception("Product is not found in the stock");
+
+			if (realStockQuantity <= 0)
+			{
+				item.Quantity = "0";
+				return (false, "Not Available");
+			}
+			else if (realStockQuantity < int.Parse(item.Quantity!))
+			{
+				//At this point there are not enough items in the stock to satisfy the item
+				//So we can just give as much as we can
+
+				//Assign as much as available
+				item.Quantity = realStockQuantity.ToString();
+
+				return (false, "Decreased");
+			}
+
+
+			return (true, "");
+		}
+	}
 }

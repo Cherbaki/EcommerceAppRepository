@@ -6,5 +6,6 @@ namespace Ecommerce.ViewModels
     {
         public required User CurrentUser { get; set; }
         public List<MyItem>? CartItems { get; set; }
-    }
+		public string? QuantityValidityMessage { get; set; }
+	}
 }

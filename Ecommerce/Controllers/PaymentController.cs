@@ -29,7 +29,14 @@ namespace Ecommerce.Controllers
             //Get the product from the database
             var targetProduct = await _productsRepository.GetFullProductByIdAsync(productId);
             if (targetProduct == null)
-                return NotFound("Product is not found in the database!!!");
+            {
+				var errorVM = new ErrorViewModel()
+				{
+					Message = "Product is not found in the database!!!"
+				};
+
+				return RedirectToAction("ErrorPage", "Errors", errorVM);
+			}
 
             MyItem? NewItem = null;
             //Attach item to the user
@@ -52,7 +59,14 @@ namespace Ecommerce.Controllers
                 var targetUser = _usersRepository.GetFullUser(userId!);
 
                 if (targetUser == null)
-                    return NotFound("Target User Not Found");
+                {
+					var errorVM = new ErrorViewModel()
+					{
+						Message = "User is not found"
+					};
+
+					return RedirectToAction("ErrorPage", "Errors", errorVM);
+				}
 
                 //Attach item to the user
                 NewItem.UserId = targetUser.Id;
@@ -229,7 +243,14 @@ namespace Ecommerce.Controllers
             var targetUser = _usersRepository.GetFullUser(userId);
 
             if (targetUser == null)
-                return NotFound("Target User Not Found");
+            {
+				var errorVM = new ErrorViewModel()
+				{
+					Message = "Target User Not Found"
+				};
+
+				return RedirectToAction("ErrorPage", "Errors", errorVM);
+			}
 
             /*
                 Creating copy list of new items(New rows are not generated because of same IDs)
@@ -279,6 +300,7 @@ namespace Ecommerce.Controllers
 
             return RedirectToAction("GetShippingAddress", new { orderId = newOrder.Id });
         }
+        
         [HttpGet]
         public IActionResult GetShippingAddress(int orderId)
         {
@@ -293,6 +315,11 @@ namespace Ecommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> GetShippingAddress(GetShippingAddressVM gsaVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(gsaVM);
+            }
+
             //Validate the view model
             if (gsaVM == null) { 
 			    var errorVM = new ErrorViewModel()
@@ -311,7 +338,13 @@ namespace Ecommerce.Controllers
 
             var targetOrder = await _paymentRepository.GetOrderByIdAsync(gsaVM.OrderId);
             if (targetOrder == null)
-                return NotFound("Order can't be null");
+			{
+				var errorVM = new ErrorViewModel()
+				{
+					Message = "Order can't be null"
+				};
+				return RedirectToAction("ErrorPage", "Errors", errorVM);
+			}
 
 
             string emailRegex = @"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
@@ -346,7 +379,8 @@ namespace Ecommerce.Controllers
 
             return RedirectToAction("ChoosePaymentType", new { orderId = targetOrder.Id });
         }
-		[HttpGet]
+		
+        [HttpGet]
 		public IActionResult ChoosePaymentType(int? orderId)
 		{
 			if (orderId == null)
@@ -416,9 +450,14 @@ namespace Ecommerce.Controllers
                 if (paymentType == "PayPalPay")
                     return RedirectToAction(paymentType, "PayPal", targetOrder);
 
-                //Here we can add conditions for other payment types
-                return NotFound("Selected Payment type is not found");
-            }
+
+				var errorViweModel = new ErrorViewModel()
+				{
+					Message = "Payment type is not found"
+				};
+				//Here we can add conditions for other payment types
+				return RedirectToAction("ErrorPage", "Errors", errorViweModel);
+			}
             catch (Exception ex)
             {
 				var errorVM = new ErrorViewModel()

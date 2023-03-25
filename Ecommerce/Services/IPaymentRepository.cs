@@ -14,5 +14,6 @@ namespace Ecommerce.Services
         public Task<MyOrder?> GetFullOrderByIdAsync(int orderId);
         public bool DeleteItem(MyItem item);
         public void SaveChangesInTheDatabase();
+        public (bool wasValid, string? message) CheckAndChangeMyItemsQuantityFromStock(ref MyItem item);
 	}
 }

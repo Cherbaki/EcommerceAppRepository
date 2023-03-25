@@ -1,5 +1,9 @@
 ﻿@model CartVM
 
+@if(Model.QuantityValidityMessage != null)
+{
+	<h1 class="text text-danger">@Model.QuantityValidityMessage</h1>
+}
 
 @if(Model.CartItems! == null || Model.CartItems!.Count() >= 1){
 	<table class="table-bordered">
@@ -8,6 +12,7 @@
 			<th>Price</th>
 			<th>Category</th>
 			<th>Quantity</th>
+			<th></th>
 		</tr>
 		@foreach(var item in Model.CartItems!)
 		{
@@ -15,7 +20,19 @@
 				<td>@item.Name</td>
 				<td>@item.Product!.CurrentPrice $</td>
 				<td>@item.Product.Category</td>
-				<td>@item.Quantity</td>
+				<td>
+					<a asp-controller="Cart" asp-action="IncrementMyItemQuantity" asp-route-myItemId="@item.Id">
+						<i class="bi bi-plus"></i>
+					</a>
+					<div>@item.Quantity</div>
+					<a asp-controller="Cart" asp-action="DecrementMyItemQuantity" asp-route-myItemId="@item.Id">
+						<i class="bi bi-dash"></i>
+					</a>
+				</td>
+				<td>
+					<a class="btn btn-danger" asp-controller="Cart" asp-action="RemoveMyItemFromTheCart" 
+									asp-route-myItemId="@item.Id" >Delete</a>
+				</td>
 			</tr>
 		}
 	</table>

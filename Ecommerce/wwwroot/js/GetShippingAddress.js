@@ -15,6 +15,9 @@
 
         // When a country is selected, populate cities select options
         countrySelect.on('change', function () {
+
+            $('#CountrySpanId').text("");
+
             var country = $(this).val();
             var cities = data.filter(city => city.country === country).map(city => city.name).sort();
 
@@ -30,6 +33,10 @@
                     text: city
                 }));
             });
+
+            citySelect.on('change', function () {
+                $('#CitySpanId').text("");
+            })
         });
     });
 
@@ -47,7 +54,7 @@
             $('#RealCityIF').val(city);
 
 
-            $('#RealSubmitFormButtonId').submit();
+            $('#RealSubmitFormButtonId').click();
         } else {
             $('#CountrySpanId').text("Please select the country");
             $('#CitySpanId').text("Please select the city");
