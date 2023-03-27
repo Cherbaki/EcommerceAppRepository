@@ -2,7 +2,6 @@
 using Ecommerce.Services;
 using Ecommerce.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Controllers
 {

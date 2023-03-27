@@ -1,0 +1,53 @@
+﻿.IndexPage_MainDiv{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    width:100%;
+}
+
+.promo_wrapper {
+    height: 650px;
+    width: 100%;
+    background-color: #E0E3E8;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+}
+
+.promo_wrapper_info {
+    padding-left: 10%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    row-gap: 10px;
+    background-color:red;
+}
+
+.promo_wrapper_info_p {
+    font-size: 0.9rem;
+}
+
+.promo_wrapper_shopProducts_Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    width: 50%;
+    height: 2rem;
+    border-width: 0.01rem;
+    border-width: 2px;
+    border-color: rgb(54, 54, 54);
+}
+
+#promo_wrapper_info_Title {
+    font-weight: normal;
+}
+
+.promo_wrapper_Images {
+    background-color: green;
+    width: 100px;
+    height:100px;
+}
