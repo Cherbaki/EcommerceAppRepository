@@ -93,3 +93,23 @@ body {
 nav {
     background-color: #E0E3E8;
 }
+
+@media(max-width:1000px) {
+    .main_nav {
+        padding-left: 10%;
+        padding-right: 10%;
+        padding-top: 20px
+    }
+
+}
+
+@media (max-width:420px) {
+    nav {
+        font-size: 13px;
+    }
+
+    /*Disable the main_nav, instead the sandwich must be displayed*/
+    .main_nav {
+        display: none;
+    }
+}

@@ -23,7 +23,6 @@
     flex-direction: column;
     justify-content: start;
     row-gap: 10px;
-    background-color:red;
 }
 
 .promo_wrapper_info_p {
@@ -47,7 +46,142 @@
 }
 
 .promo_wrapper_Images {
-    background-color: green;
     width: 100px;
     height:100px;
+}
+
+.mainpage_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    width:100%;
+    padding-left:4%;
+    padding-right:4%;
+}
+
+.Products {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    column-gap: 65px;
+    row-gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 220px;
+}
+
+.Products_Product {
+    width: 250px;
+    height: 400px;
+}
+
+.Products_Product_Image {
+    height: 82%;
+    background-position: center;
+    background-size:cover;
+}
+
+.Products_Product_Info {
+    height: 18%;
+}
+
+.Products_Product_Info_Price_Info {
+    display: flex;
+    column-gap: 10px;
+}
+
+.Products_Product_Info_Price_Info #CurrentPrice {
+    color: rgb(190, 74, 24);
+}
+
+.SecondPromo_Wrapper {
+    height: 550px;
+    width:100%;
+    background-color: #547665;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.SecondPromo_Wrapper_Info {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.SecondPromo_Wrapper_Image {
+    height: 100%;
+    width: 50%;
+    background-image: url('/images/SecondPromoWrapperImage.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.SecondPromo_Wrapper_Info_Content {
+    width: 55%;
+    height: 60%;
+    color: wheat;
+}
+
+.SecondPromo_Wrapper_Info_Content h1 {
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.SecondPromo_Wrapper_Info_Content_Button {
+    width: 40%;
+    border-color: wheat;
+    margin-top: 20px;
+}
+
+.SecondPromo_Wrapper_Info_Content_Button a {
+    color: wheat;
+}
+
+@media(max-width:1000px) {
+
+    .promo_wrapper_info {
+        width: 90%;
+    }
+
+    .Products_Product {
+        width: 180px;
+        height: 380px;
+    }
+
+    .SecondPromo_Wrapper {
+        margin-bottom: 650px;
+    }
+
+    .SecondPromo_Wrapper_Info {
+        width: 100%;
+    }
+
+    .SecondPromo_Wrapper_Image {
+        width: 100%;
+    }
+
+    .SecondPromo_Wrapper_Info_Content_Button {
+        width: 60%;
+    }
+
+}
+
+@media (max-width:420px) {
+
+    .Products {
+        column-gap: 10px;
+    }
+
+    .Products_Product {
+        width: 165px;
+        height: 350px;
+    }
+
 }
