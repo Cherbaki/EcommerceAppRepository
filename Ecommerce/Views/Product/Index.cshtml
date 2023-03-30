@@ -32,20 +32,22 @@
     </div>
 
     @for(int i = 0; i < 4; i++){
-        <div class="Products center">
-            <div class="Products_Product">
-                <div class="Products_Product_Image" style="background-image: url('@Model.Products?.ElementAt(i).MyImages?.ElementAt(0).ImageURL');">
-                </div>
-                <div class="Products_Product_Info">
-                    <h3>@Model.Products?.ElementAt(i).Name</h3>
-                    <p>@Model.Products?.ElementAt(i).Category</p>
-                    <div class="Products_Product_Info_Price_Info">
-                        <p id="CurrentPrice">$@Model.Products?.ElementAt(i).CurrentPrice</p>
-                        <s>$@Model.Products?.ElementAt(i).OldPrice</s>
+        <a asp-controller="Product" asp-action="ProductPage" asp-route-productId="@Model.Products?.ElementAt(i).Id">
+            <div class="Products center">
+                <div class="Products_Product">
+                    <div class="Products_Product_Image" style="background-image: url('@Model.Products?.ElementAt(i).MyImages?.ElementAt(0).ImageURL');">
+                    </div>
+                    <div class="Products_Product_Info">
+                        <h3>@Model.Products?.ElementAt(i).Name</h3>
+                        <p>@Model.Products?.ElementAt(i).Category</p>
+                        <div class="Products_Product_Info_Price_Info">
+                            <p id="CurrentPrice">$@Model.Products?.ElementAt(i).CurrentPrice</p>
+                            <s>$@Model.Products?.ElementAt(i).OldPrice</s>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     }
 
 
@@ -74,21 +76,42 @@
     </div>
 
     @for(int i = 4; i < Model.Products?.Count(); i++){
-        <div class="Products center">
-            <div class="Products_Product">
-                <div class="Products_Product_Image" style="background-image: url('@Model.Products?.ElementAt(i).MyImages?.ElementAt(0).ImageURL');">
-                </div>
-                <div class="Products_Product_Info">
-                    <h3>@Model.Products?.ElementAt(i).Name</h3>
-                    <p>@Model.Products?.ElementAt(i).Category</p>
-                    <div class="Products_Product_Info_Price_Info">
-                        <p id="CurrentPrice">$@Model.Products?.ElementAt(i).CurrentPrice</p>
-                        <s>$@Model.Products?.ElementAt(i).OldPrice</s>
+        <a asp-controller="Product" asp-action="ProductPage" asp-route-productId="@Model.Products?.ElementAt(i).Id">
+            <div class="Products center">
+                <div class="Products_Product">
+                    <div class="Products_Product_Image" style="background-image: url('@Model.Products?.ElementAt(i).MyImages?.ElementAt(0).ImageURL');">
+                    </div>
+                    <div class="Products_Product_Info">
+                        <h3>@Model.Products?.ElementAt(i).Name</h3>
+                        <p>@Model.Products?.ElementAt(i).Category</p>
+                        <div class="Products_Product_Info_Price_Info">
+                            <p id="CurrentPrice">$@Model.Products?.ElementAt(i).CurrentPrice</p>
+                            <s>$@Model.Products?.ElementAt(i).OldPrice</s>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     }
+
+    <div id="ThirdPromo_Wrapper" class="SecondPromo_Wrapper">
+      <div class="SecondPromo_Wrapper_Image">
+          
+      </div>
+      <div class="SecondPromo_Wrapper_Info">
+        <div class="SecondPromo_Wrapper_Info_Content">
+            <h1>All Natural Ingredients.</h1>
+            <p>A healthier you from the inside out. We’ve sourced the cleanest ingredients to create a line of clean skin care treatments that 
+              leave you feeling your best.
+            </p>
+            <div class="SecondPromo_Wrapper_Info_Content_Button">
+              <a>
+                    Shop products
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
 
 </div>
 

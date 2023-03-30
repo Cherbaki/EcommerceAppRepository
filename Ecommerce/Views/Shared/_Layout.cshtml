@@ -23,12 +23,12 @@
               <li><a href="#">ABOUT</a></li>
               <li><a href="#">CONSULTATION</a></li>
             </ul>
-            <h1 class="MenuTitle"><a href="index.html">sooth</a></h1>
+            <h1 class="MenuTitle"><a asp-controller="Product" asp-action="Index">Home</a></h1>
             <ul class="right_Menu">
               <li>
                  <a href="#"><i class="bi bi-search"></i></a>
               </li>
-              <li><a href="#">CART</a></li>
+              <li><a asp-controller="Cart" asp-action="Cart">CART</a></li>
               <li><a href="#">LOGIN</a></li>
             </ul>
           </div>
@@ -50,6 +50,65 @@
             @RenderBody()
         </main>
     </div>
+
+    <footer>
+        <div class="center">
+            <div class="Footer_MainDiv">
+                <div class="Upper_Footer">
+                    <div class="Upper_Footer_LeftHalf">
+                        <h1>sooth</h1>
+                        <p>Explore our innovative skincare products </p>
+                        <div class="Upper_Footer_LeftHalf_EmailField">
+                            <div class="Upper_Footer_LeftHalf_EmailField_LeftHalf">
+                                &nbspYour Email...
+                            </div>
+                            <div class="Upper_Footer_LeftHalf_EmailField_RightHalf">
+                                &nbspSubscribe
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Upper_Footer_RightHalf">
+                        <div>
+                            <p>Shop</p>
+                            <p>Lorem ipsum al</p>
+                            <p>Dolar at </p>
+                            <p>Veraotio</p>
+                            <p>Chauloe</p>
+                        </div>
+                        <div>
+                            <p>About</p>
+                            <p>About Us</p>
+                            <p>Sooth Stories (Blog)</p>
+                            <p>Contact Us</p>
+                            <p>Learn More</p>
+                        </div>
+                        <div>
+                            <p>More</p>
+                            <p>Dolar at </p>
+                            <p>Lorem at al</p>
+                            <p>Veraotio</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="Lower_Footer">
+                    <div class="Lower_Footer_LeftPart">
+                        <p>Sooth all rights reserved</p>
+                        <div>
+                            <a>Privacy Policy</a>
+                            <a>Terms of Use</a>
+                            <a>Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="Lower_Footer_RightPart">
+                        <img src="~/Images/Facebook_Icon.png"/>
+                        <img src="~/Images/Instagram_Icon.png"/>
+                        <img src="~/Images/Twitter_Icon.png"/>
+                        <img src="~/Images/Youtube_Icon.png"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

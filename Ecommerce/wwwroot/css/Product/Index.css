@@ -107,6 +107,14 @@
     margin-bottom: 40px;
 }
 
+#ThirdPromo_Wrapper {
+    background-color: #c6b9b6;
+}
+
+#ThirdPromo_Wrapper .SecondPromo_Wrapper_Image {
+    background-image: url('/images/nigel-tadyanehondo.png');
+}
+
 .SecondPromo_Wrapper_Info {
     height: 100%;
     width: 50%;
@@ -126,7 +134,7 @@
 .SecondPromo_Wrapper_Info_Content {
     width: 55%;
     height: 60%;
-    color: wheat;
+    color: white;
 }
 
 .SecondPromo_Wrapper_Info_Content h1 {
@@ -135,13 +143,20 @@
 }
 
 .SecondPromo_Wrapper_Info_Content_Button {
-    width: 40%;
-    border-color: wheat;
-    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid;
+    width: 50%;
+    height: 2rem;
+    border-width: 0.01rem;
+    border-width: 2px;
+    border-color: white;
+    margin-top:15px;
 }
 
 .SecondPromo_Wrapper_Info_Content_Button a {
-    color: wheat;
+    color: white;
 }
 
 @media(max-width:1000px) {
@@ -161,6 +176,10 @@
 
     .SecondPromo_Wrapper_Info {
         width: 100%;
+    }
+
+    #ThirdPromo_Wrapper .SecondPromo_Wrapper_Info {
+        background-color: #c6b9b6;
     }
 
     .SecondPromo_Wrapper_Image {

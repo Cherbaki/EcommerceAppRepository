@@ -94,6 +94,106 @@ nav {
     background-color: #E0E3E8;
 }
 
+footer {
+    background-color: #354E57;
+    padding-top:100px;
+    padding-bottom:50px;
+    color:white;
+}
+
+.Footer_MainDiv {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+
+    height: auto;
+}
+
+.Upper_Footer{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    width:100%;
+
+    border-bottom:solid;
+}
+
+.Upper_Footer_LeftHalf {
+    display:flex;
+    align-content:center;
+    flex-wrap:wrap;
+    width: 65%;
+    height: 300px;
+}
+
+.Upper_Footer_LeftHalf h1, .Upper_Footer_LeftHalf p{
+    width:100%;
+}
+
+
+.Upper_Footer_LeftHalf_EmailField {
+    width: 50%;
+    height: 40px;
+    border: solid;
+    border-width:thin;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.Upper_Footer_LeftHalf_EmailField_LeftHalf{
+    width:70%;
+    height:100%;
+    border-right:solid;
+    border-width:thin;
+}
+.Upper_Footer_LeftHalf_EmailField_RightHalf {
+    width: 30%;
+    height: 100%;
+}
+
+.Upper_Footer_RightHalf {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 45%;
+    height: 300px;
+}
+
+.Lower_Footer {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+
+    width: 100%;
+    padding-top:30px;
+}
+
+.Lower_Footer_LeftPart{
+    width:45%;
+}
+
+.Lower_Footer_LeftPart div{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    text-decoration:underline;
+}
+
+.Lower_Footer_LeftPart div a{
+    color:white;
+}
+
+.Lower_Footer_RightPart {
+    width: 45%;
+    display:flex;
+    justify-content:end;
+    column-gap:20px;
+}
+
 @media(max-width:1000px) {
     .main_nav {
         padding-left: 10%;
@@ -101,11 +201,45 @@ nav {
         padding-top: 20px
     }
 
+    .Upper_Footer{
+        flex-wrap:wrap;
+        justify-content:start;
+        row-gap:50px;
+        padding-bottom:100px;
+    }
+
+    .Upper_Footer_LeftHalf {
+        height: auto;
+        width: auto;
+    }
+
+    .Upper_Footer_RightHalf{
+        height:auto;
+        width:auto;
+        column-gap:60px;
+    }
+
+    .Lower_Footer_LeftPart div {
+        flex-wrap:wrap;
+    }
+
+    .Lower_Footer_LeftPart div a{
+        width:100%;
+    }
+
+    .Upper_Footer_LeftHalf_EmailField {
+        width: 70%;
+    }
+
 }
 
 @media (max-width:420px) {
     nav {
         font-size: 13px;
+    }
+
+    .Upper_Footer_LeftHalf_EmailField {
+        width: 100%;
     }
 
     /*Disable the main_nav, instead the sandwich must be displayed*/
