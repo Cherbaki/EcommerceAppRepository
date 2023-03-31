@@ -13,8 +13,11 @@ namespace Ecommerce.Models
 		[Required]
 		[MaxLength(50)]
 		public string? Name { get; set; }
-		[Required]
-		[MaxLength(50)]
+        [Required]
+        [MaxLength(500)]
+        public string? Description { get; set; }
+        [Required]
+		[MaxLength(500)]
 		public string? ShippingInfo { get; set; }
 		[Required]
 		[MaxLength(20)]

@@ -1,0 +1,78 @@
+﻿.ProductPage_MainDiv{
+    margin-top:50px;
+    width:100%;
+    height:600px;
+}
+
+.ProductPage_MainDiv_Product{
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.ProductPage_MainDiv_Product_LeftPart {
+    width: 50%;
+    height:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.ProductPage_MainDiv_Product_LeftPart_MainImage{
+    width:100%;
+    height:80%;
+    background-size:contain;
+    background-position:center;
+}
+
+.ProductPage_MainDiv_Product_LeftPart_OtherImages {
+
+    width: 100%;
+    height: 20%;
+
+    display:flex;
+    justify-content:start;
+    align-items:center;
+}
+
+.ProductPage_MainDiv_Product_LeftPart_OtherImages_Image {
+    height:90%;
+    width:100px;
+    background-size:cover;
+    background-position:center;
+}
+
+.ProductPage_MainDiv_Product_RightPart {
+    background-color: yellow;
+    height: 100%;
+    width: 50%;
+
+}
+
+.ProductPage_MainDiv_Product_RightPart h1,.ProductPage_MainDiv_Product_RightPart div,.ProductPage_MainDiv_Product_RightPart p{
+    width:100%;
+    height:auto;
+}
+
+.ProductPage_MainDiv_Product_RightPart_RateStars{
+    background-color:red;
+    height:20px;
+}
+
+.ProductPage_MainDiv_Product_RightPart_Details{
+
+    border-bottom:solid;
+}
+
+.ProductPage_MainDiv_Product_RightPart_ShippingAndHandling{
+    
+}
+
+.ProductPage_MainDiv_Product_RightPart_Payment{
+
+}
+

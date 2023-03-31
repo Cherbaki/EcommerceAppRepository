@@ -26,14 +26,14 @@
         </div>
     </div>
 
-    <div class="mainpage_info">
+    <div class="mainpage_info center">
         <p>Most Popular</p>
         <p>Shop all products</p>
     </div>
 
-    @for(int i = 0; i < 4; i++){
-        <a asp-controller="Product" asp-action="ProductPage" asp-route-productId="@Model.Products?.ElementAt(i).Id">
-            <div class="Products center">
+    <div class="Products center">
+        @for(int i = 0; i < 4; i++){
+            <a asp-controller="Product" asp-action="ProductPage" asp-route-productId="@Model.Products?.ElementAt(i).Id">
                 <div class="Products_Product">
                     <div class="Products_Product_Image" style="background-image: url('@Model.Products?.ElementAt(i).MyImages?.ElementAt(0).ImageURL');">
                     </div>
@@ -46,9 +46,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    }
+            </a>
+        }
+    </div>
 
 
     <div class="SecondPromo_Wrapper">
@@ -70,14 +70,14 @@
         </div>
     </div>
 
-    <div class="mainpage_info">
+    <div class="mainpage_info center">
         <p>Most Popular</p>
         <p>Shop all products</p>
     </div>
 
-    @for(int i = 4; i < Model.Products?.Count(); i++){
-        <a asp-controller="Product" asp-action="ProductPage" asp-route-productId="@Model.Products?.ElementAt(i).Id">
-            <div class="Products center">
+    <div class="Products center">
+        @for(int i = 4; i < Model.Products?.Count(); i++){
+            <a asp-controller="Product" asp-action="ProductPage" asp-route-productId="@Model.Products?.ElementAt(i).Id">
                 <div class="Products_Product">
                     <div class="Products_Product_Image" style="background-image: url('@Model.Products?.ElementAt(i).MyImages?.ElementAt(0).ImageURL');">
                     </div>
@@ -90,9 +90,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    }
+            </a>
+        }
+    </div>
 
     <div id="ThirdPromo_Wrapper" class="SecondPromo_Wrapper">
       <div class="SecondPromo_Wrapper_Image">

@@ -4,17 +4,66 @@
     ViewData["Title"] = "ProductPage";
 }
 
+<link rel="stylesheet" href="~/css/Product/ProductPage.css" type="text/css"/>
+
 @if(Model.MessageFromPayment != null){
     <div>
         <span class="text text-danger">@Model.MessageFromPayment</span>
     </div>
 }
 
-<h1>ProductPage</h1>
+<div class="ProductPage_MainDiv center">
 
-<div>
-    <h1 id="ProductIdHeaderId" style="display:none;">@Model.Product?.Id</h1>
-    <h4>Product</h4>
+    <div class="ProductPage_MainDiv_Product">
+        <div class="ProductPage_MainDiv_Product_LeftPart">
+            <div class="ProductPage_MainDiv_Product_LeftPart_MainImage" 
+                style="background-image:url('@Model?.Product?.MyImages?.ElementAt(0).ImageURL')">
+
+            </div>
+            <div class="ProductPage_MainDiv_Product_LeftPart_OtherImages">
+                @for(int i = 1; i < Model?.Product?.MyImages?.Count(); i++)
+                {
+                 <div class="ProductPage_MainDiv_Product_LeftPart_OtherImages_Image" 
+                     style="background-image:url('@Model?.Product?.MyImages?.ElementAt(i).ImageURL')">
+                    
+                 </div>   
+                }
+            </div>
+        </div>
+        <div class="ProductPage_MainDiv_Product_RightPart">
+            
+            <h1>@Model?.Product?.Name</h1>
+            <div class="ProductPage_MainDiv_Product_RightPart_RateStars">
+
+            </div>
+            <p>$@Model?.Product?.CurrentPrice</p>
+            <p>@Model?.Product?.Description</p>
+            <div class="ProductPage_MainDiv_Product_RightPart_Details">
+                Details
+            </div>
+            <div class="ProductPage_MainDiv_Product_RightPart_ShippingAndHandling">
+                <par>Shipping&Handling</par>
+            </div>
+            <div class="ProductPage_MainDiv_Product_RightPart_Payment">
+                <div class="ProductPage_MainDiv_Product_RightPart_Payment_Quantity">
+
+                </div>
+                <div class="ProductPage_MainDiv_Product_RightPart_Payment_Buttons">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="RelatedProducts">
+
+    </div>
+
+</div>
+
+<div  >
+    <h1 id="ProductIdHeaderId" style="display:none;">@Model?.Product?.Id</h1>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
