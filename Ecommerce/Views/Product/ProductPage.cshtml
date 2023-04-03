@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "ProductPage";
+
+    var rand = new Random();
 }
 
 <link rel="stylesheet" href="~/css/Product/ProductPage.css" type="text/css"/>
@@ -12,57 +14,73 @@
     </div>
 }
 
-<div class="ProductPage_MainDiv center">
-
-    <div class="ProductPage_MainDiv_Product">
-        <div class="ProductPage_MainDiv_Product_LeftPart">
-            <div class="ProductPage_MainDiv_Product_LeftPart_MainImage" 
-                style="background-image:url('@Model?.Product?.MyImages?.ElementAt(0).ImageURL')">
-
-            </div>
-            <div class="ProductPage_MainDiv_Product_LeftPart_OtherImages">
-                @for(int i = 1; i < Model?.Product?.MyImages?.Count(); i++)
-                {
-                 <div class="ProductPage_MainDiv_Product_LeftPart_OtherImages_Image" 
-                     style="background-image:url('@Model?.Product?.MyImages?.ElementAt(i).ImageURL')">
-                    
-                 </div>   
-                }
-            </div>
-        </div>
-        <div class="ProductPage_MainDiv_Product_RightPart">
+<div class="ProductPage_MainDiv">
+        <div class="ProductPage_MainDiv_Product">
             
-            <h1>@Model?.Product?.Name</h1>
-            <div class="ProductPage_MainDiv_Product_RightPart_RateStars">
+            <div class="ProductPage_MainDiv_Product_LeftPart">
 
-            </div>
-            <p>$@Model?.Product?.CurrentPrice</p>
-            <p>@Model?.Product?.Description</p>
-            <div class="ProductPage_MainDiv_Product_RightPart_Details">
-                Details
-            </div>
-            <div class="ProductPage_MainDiv_Product_RightPart_ShippingAndHandling">
-                <par>Shipping&Handling</par>
-            </div>
-            <div class="ProductPage_MainDiv_Product_RightPart_Payment">
-                <div class="ProductPage_MainDiv_Product_RightPart_Payment_Quantity">
+                <div class="ProductPage_MainDiv_Product_LeftPart_MainImage" 
+                    style="background-image:url('@Model?.Product?.MyImages?.ElementAt(0).ImageURL')">
 
                 </div>
-                <div class="ProductPage_MainDiv_Product_RightPart_Payment_Buttons">
-
+                <div class="ProductPage_MainDiv_Product_LeftPart_OtherImages">
+                    @for(int i = 1; i < Model?.Product?.MyImages?.Count(); i++)
+                    {
+                     <div class="ProductPage_MainDiv_Product_LeftPart_OtherImages_Image" 
+                         style="background-image:url('@Model?.Product?.MyImages?.ElementAt(i).ImageURL')">
+                    
+                     </div>   
+                    }
                 </div>
+
             </div>
+            <div class="ProductPage_MainDiv_Product_RightPart">
+            
+                <h1>@Model?.Product?.Name</h1>
+                <div class="ProductPage_MainDiv_Product_RightPart_RateStars">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-half"></i>
+                    <span>@rand.Next(10,200) revievs</span>
+                </div>
+                <div class="ProductPage_MainDiv_Product_RightPart_Prices">
+                    <p class="NewPricePar">$@Model?.Product?.CurrentPrice</p>
+                    <p class="OldPricePar">
+                        <s>$@Model?.Product?.OldPrice</s>
+                    </p>
+                </div>
+                <p>@Model?.Product?.Description</p>
+                <div class="ProductPage_MainDiv_Product_RightPart_Details">
+                    <span>Details</span>
+                    <i class="bi bi-plus"></i>
+                </div>
+                <div class="ProductPage_MainDiv_Product_RightPart_ShippingAndHandling">
+                    <span>Shipping & Handling</span>
+                    <i class="bi bi-plus"></i>
+                </div>
+
+                <div class="ProductPage_MainDiv_Product_RightPart_Payment">
+                    <div class="ProductPage_MainDiv_Product_RightPart_Payment_Quantity">
+
+                    </div>
+                    <div class="ProductPage_MainDiv_Product_RightPart_Payment_Buttons">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="RelatedProducts">
 
         </div>
-    </div>
-
-    <div class="RelatedProducts">
-
-    </div>
-
 </div>
 
-<div  >
+<!--________________________________________________________________________________________________-->
+
+<div style="display:none;" >
     <h1 id="ProductIdHeaderId" style="display:none;">@Model?.Product?.Id</h1>
     <hr />
     <dl class="row">
