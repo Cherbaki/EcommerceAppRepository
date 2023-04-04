@@ -5,8 +5,16 @@
 	<h1 class="text text-danger">@Model.QuantityValidityMessage</h1>
 }
 
+
+
 @if(Model.CartItems! == null || Model.CartItems!.Count() >= 1){
-	<table class="table-bordered">
+	
+	<div class="cart-mainDiv">
+
+	</div>
+	
+	<table style="display:none;" class="table-bordered">
+
 		<tr>
 			<th>Name</th>
 			<th>Price</th>
@@ -14,6 +22,7 @@
 			<th>Quantity</th>
 			<th></th>
 		</tr>
+
 		@foreach(var item in Model.CartItems!)
 		{
 			<tr>
@@ -36,7 +45,6 @@
 			</tr>
 		}
 	</table>
-
 	<a asp-action="CheckOut" asp-controller="Payment" >Check Out</a>
 
 }

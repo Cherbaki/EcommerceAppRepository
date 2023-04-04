@@ -1,4 +1,17 @@
-﻿.ProductPage_MainDiv {
+﻿#message-container {
+    background-color: #0f2f29;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width:auto;
+}
+
+#message-container span {
+    color: white;
+    font-weight: bold;
+}
+
+.ProductPage_MainDiv {
     width: 100%;
     height: 600px;
     padding-top:100px;
@@ -169,7 +182,9 @@
     align-items: center;
     width: 30%;
     height:auto;
+    flex-wrap:wrap;
 }
+
 .ProductPage_MainDiv_Product_RightPart_Payment_Quantity div{
     width:15%;
 }
@@ -197,6 +212,11 @@
     text-align: center;
     border-width: 2px;
     border-color: #18404b;
+}
+
+#QuantityIFSpanId{
+    width:100%;
+    color:red;
 }
 
 #QuantityMinus:hover,#QuantityPlus:hover{
@@ -253,12 +273,12 @@
 }
 
 .Products_Product {
-    width: 200px;
-    height: 400px;
+    width: 180px;
+    height: 500px;
 }
 
 .Products_Product_Image {
-    height: 75%;
+    height: 70%;
     background-position: center;
     background-size: cover;
 }
@@ -285,6 +305,12 @@
     .ProductPage_MainDiv_Product_LeftPart {
         width: 100%;
         height: 500px;
+    }
+
+    .Products_Product {
+        width: 190px;
+        height: 500px;
+        margin-bottom:10px;
     }
 
     .ProductPage_MainDiv_Product_RightPart{
@@ -322,7 +348,7 @@
 
     .Products_Product {
         width: 190px;
-        height:550px;
+        height:500px;
     }
 
 }

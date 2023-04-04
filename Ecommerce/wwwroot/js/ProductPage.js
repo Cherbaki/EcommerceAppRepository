@@ -2,7 +2,30 @@
 
     let quantityIsValid = false;
 
-    $('#QuantityIFId').change(ValidateQuantity);
+    // Get the message container element
+    var messageContainer = $('#message-container');
+
+    // Show the message div for 5 seconds, then hide it
+    setTimeout(function () {
+        messageContainer.fadeOut();
+    }, 3000);
+
+    $('#QuantityMinus').click(() => {
+        let currentQuantity = Number.parseInt($('#QuantityIFId').val());
+        currentQuantity--;
+        $('#QuantityIFId').val(currentQuantity);
+        $('#QuantityValue').text(currentQuantity);
+        ValidateQuantity();
+    });
+
+    $('#QuantityPlus').click(() => {
+        let currentQuantity = Number.parseInt($('#QuantityIFId').val());
+        currentQuantity++;
+        $('#QuantityIFId').val(currentQuantity);
+        $('#QuantityValue').text(currentQuantity);
+        ValidateQuantity();
+    });
+
     $('#BuyButtonId').click(() => {
         if (!quantityIsValid)
             return;
@@ -20,7 +43,7 @@
 
     function ValidateQuantity(callerId) {
 
-        let ProductID = $('#ProductIdHeaderId').text();
+        let ProductID = $('#ProductId').text();
         let specifiedQuantity = $('#QuantityIFId').val();
 
         $.ajax({

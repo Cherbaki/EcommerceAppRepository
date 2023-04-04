@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="~/css/Product/ProductPage.css" type="text/css"/>
 
 @if(Model.MessageFromPayment != null){
-    <div>
+    <div id="message-container">
         <span class="text text-danger">@Model.MessageFromPayment</span>
     </div>
 }
@@ -53,6 +53,7 @@
                         <s>$@Model?.Product?.OldPrice</s>
                     </p>
                 </div>
+
                 <p>@Model?.Product?.Description</p>
                 <div class="ProductPage_MainDiv_Product_RightPart_Details">
                     <span>Details</span>
@@ -69,16 +70,17 @@
                         <div id="QuantityMinus">
                             <i class="bi bi-dash-lg"></i>
                         </div>
-                        <div id="QuantityValue">2</div>
+                        <div id="QuantityValue">1</div>
                         <div id="QuantityPlus">
                             <i class="bi bi-plus-lg"></i>
                         </div>
+                        <span class="text text-danger" id="QuantityIFSpanId"></span>
                     </div>
                     <div class="ProductPage_MainDiv_Product_RightPart_Payment_Buttons">
-                        <div class="BuyBtn"> 
+                        <div class="BuyBtn" id="BuyButtonId"> 
                             Buy
                         </div>
-                        <div class="AddToCartBtn">
+                        <div class="AddToCartBtn" id="AddToCartId">
                             <i class="bi bi-cart-plus"></i>    
                             Add to cart
                         </div>
@@ -117,83 +119,15 @@
 
 <!--________________________________________________________________________________________________-->
 
-<div style="display:none;" >
-    <h1 id="ProductIdHeaderId" style="display:none;">@Model?.Product?.Id</h1>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.ShippingInfo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.ShippingInfo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.OldPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.OldPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.CurrentPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.CurrentPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.StockQuantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Product.StockQuantity)
-        </dd>
-    </dl>
-    
+<div style="display:none;">
+    <span id="ProductId">@Model?.ProductId</span>
     <form id="MainFormId" method="post">
-        <label asp-for="SelectedQuantity">Quantity</label>
         <input id="QuantityIFId" asp-for="SelectedQuantity" />
-        <span class="text text-danger" id="QuantityIFSpanId"></span>
-        <button id="RealBuyButtonId" asp-action="ProductPage" asp-route-Caller="Buy" asp-route-ProductId="@Model.ProductId" type="submit" style="display:none;"></button>
-        <button id="RealAddToCartButtonId" asp-action="ProductPage" asp-route-Caller="AddToCart" asp-route-ProductId="@Model.ProductId" type="submit" style="display:none;"></button>
+        <button id="RealBuyButtonId" asp-action="ProductPage" 
+            asp-route-Caller="Buy" asp-route-ProductId="@Model?.ProductId" type="submit" style="display:none;"></button>
+        <button id="RealAddToCartButtonId" asp-action="ProductPage" 
+            asp-route-Caller="AddToCart" asp-route-ProductId="@Model?.ProductId" type="submit" style="display:none;"></button>
     </form>
-
-    <div style="display:flex;justify-content:start;align-content:start;flex-wrap:wrap;border:solid black 5px;">
-        
-        @if(Model.Product.MyImages != null){
-            @foreach(var image in Model.Product.MyImages)
-            {
-                <img src="@image.ImageURL" style="width:200px;height:200px;"/>
-            }
-        }
-        else
-        {
-            <span class="text text-danger">This product has no images</span>
-        }
-        
-    </div>
-
-
-    <div>
-        <a id="BuyButtonId" class="btn btn-success">Buy</a>
-        <a id="AddToCartId" class="btn btn-warning">Add To Cart</a>
-    </div>
-
 </div>
 
 @section Scripts{
