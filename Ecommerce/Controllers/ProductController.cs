@@ -55,11 +55,16 @@ namespace Ecommerce.Controllers
                 return RedirectToAction("ErrorPage", "Errors", errorVM);
             }
 
+			//Gather related Products
+			var relatedProduct = _productsRepository.GetRelatedProducts(targetProduct);
+
+
             var VM = new ProductPageVM
 			{
 				Product = targetProduct,
 				ProductId = targetProduct.Id,
-				MessageFromPayment = message
+				MessageFromPayment = message,
+				RelatedProducts = relatedProduct
             };			
 
             return View(VM);

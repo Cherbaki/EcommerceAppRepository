@@ -14,5 +14,7 @@ namespace Ecommerce.ViewModels
         [Required]
         public string? Caller { get; set; }
         public string? MessageFromPayment { get; set; }
+
+        public IEnumerable<Product>? RelatedProducts { get; set; }
     }
 }

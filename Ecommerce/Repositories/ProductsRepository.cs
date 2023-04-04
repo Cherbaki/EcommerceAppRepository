@@ -49,6 +49,13 @@ namespace Ecommerce.Repositories
                 return false;
             }
         }
+        public IEnumerable<Product>? GetRelatedProducts(Product targetProdct)
+        {
+            //This methid should be returning related products of the given product
+            var relatedProduct = _dbContext.Products?.Where(pr => pr.Id != targetProdct.Id).Take(4);
+
+            return relatedProduct;
+        }
 
 
         //We have an Action with an identical implementation which is used by the front-end,

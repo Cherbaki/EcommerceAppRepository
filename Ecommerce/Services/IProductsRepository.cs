@@ -10,5 +10,7 @@ namespace Ecommerce.Services
 		public bool ValidateQuantityAgainstStockQuantity(int productId, int givenQuantity);
 		public Product? GetProductById(int productId);
 		public bool UpdateProduct(Product product);
-	}
+		public IEnumerable<Product>? GetRelatedProducts(Product targetProdct);
+
+    }
 }
