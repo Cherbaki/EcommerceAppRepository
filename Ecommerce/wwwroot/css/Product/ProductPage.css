@@ -35,18 +35,31 @@
     background-size:contain;
     background-position:center;
     background-repeat:no-repeat;
+    position:relative;
 }
-.ProductPage_MainDiv_Product_LeftPart_MainImage:hover{
+
+#LeftArrow{
+    position:absolute;
+    left:10%;
+    top:50%;
+}
+#RightArrow {
+    position: absolute;
+    right:10%;
+    top:50%;
+}
+
+#LeftArrow:hover, #RightArrow:hover{
     cursor:pointer;
 }
+
 .ProductPage_MainDiv_Product_LeftPart_OtherImages {
     width: 100%;
     height: 20%;
-
-    display:flex;
-    justify-content:start;
-    align-items:center;
-    column-gap:10px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: 10px;
 }
 
 .ProductPage_MainDiv_Product_LeftPart_OtherImages_Image {
@@ -65,9 +78,17 @@
     width: 50%;
 }
 
-.ProductPage_MainDiv_Product_RightPart h1{
-    font-family:Tahoma;
-    color:#0f2f29;
+.DiscountP {
+    color: sandybrown;
+    background-color: snow;
+    text-align:center;
+    width:70px;
+    height:25px;
+}
+
+.ProductPage_MainDiv_Product_RightPart h1 {
+    font-family: Tahoma;
+    color: #0f2f29;
 }
 
 .ProductPage_MainDiv_Product_RightPart_Prices p{
@@ -103,6 +124,10 @@
     align-items:center;
 }
 
+.ProductPage_MainDiv_Product_RightPart_Details:hover{
+    cursor:pointer;
+}
+
 .ProductPage_MainDiv_Product_RightPart_Details i{
     font-size:30px;
 }
@@ -118,16 +143,95 @@
     align-items: center;
 }
 
+.ProductPage_MainDiv_Product_RightPart_ShippingAndHandling {
+    cursor: pointer;
+}
+
 .ProductPage_MainDiv_Product_RightPart_ShippingAndHandling i{
     font-size:30px;
 }
 
-.ProductPage_MainDiv_Product_RightPart_Payment{
+#QuantityHeader {
+    color: #18404b;
+}
 
+.ProductPage_MainDiv_Product_RightPart_Payment{
+    display:flex;
+    justify-content:space-around;   
+    align-items:center;
+
+    margin-top:20px;
+}
+
+.ProductPage_MainDiv_Product_RightPart_Payment_Quantity {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 30%;
+    height:auto;
+}
+.ProductPage_MainDiv_Product_RightPart_Payment_Quantity div{
+    width:15%;
+}
+
+#QuantityMinus {
+    border: solid;
+    border-width: 2px;
+    border-color: #18404b;
+    display:flex;
+    justify-content:center;
+    align-items:end;
+}
+
+
+#QuantityValue {
+    border-top: solid;
+    border-bottom: solid;
+    border-width: 2px;
+    text-align: center;
+    border-color: #18404b;
+}
+
+#QuantityPlus {
+    border: solid;
+    text-align: center;
+    border-width: 2px;
+    border-color: #18404b;
+}
+
+#QuantityMinus:hover,#QuantityPlus:hover{
+    cursor:pointer;
+}
+
+.ProductPage_MainDiv_Product_RightPart_Payment_Buttons {
+    width: 30%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap:10px;
+}
+
+.BuyBtn {
+    width: 51%;
+    border: solid;
+    text-align: center;
+    padding: 10px;
+    border-width: thin;
+}
+
+.AddToCartBtn {
+    border: solid;
+    text-align: center;
+    padding: 10px;
+    border-width: thin;
+}
+
+.BuyBtn:hover, .AddToCartBtn:hover{
+    cursor:pointer;
 }
 
 @media(max-width:1000px) {
-
     .ProductPage_MainDiv {
         padding-bottom: 200px;
         height: 700px;
