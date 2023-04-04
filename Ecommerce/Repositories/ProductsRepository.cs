@@ -52,7 +52,9 @@ namespace Ecommerce.Repositories
         public IEnumerable<Product>? GetRelatedProducts(Product targetProdct)
         {
             //This methid should be returning related products of the given product
-            var relatedProduct = _dbContext.Products?.Where(pr => pr.Id != targetProdct.Id).Take(4);
+            var relatedProduct = _dbContext.Products?
+                                    .Include(pr => pr.MyImages)
+                                    .Where(pr => pr.Id != targetProdct.Id).Take(4);
 
             return relatedProduct;
         }

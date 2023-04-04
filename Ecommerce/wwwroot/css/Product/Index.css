@@ -44,6 +44,10 @@
     border-color: rgb(54, 54, 54);
 }
 
+.promo_wrapper_shopProducts_Button:hover{
+    cursor:pointer;
+}
+
 #promo_wrapper_info_Title {
     font-weight: normal;
 }
@@ -185,6 +189,10 @@
     border-width: 2px;
     border-color: white;
     margin-top:15px;
+}
+
+.SecondPromo_Wrapper_Info_Content_Button:hover{
+    cursor:pointer;
 }
 
 .SecondPromo_Wrapper_Info_Content_Button a {

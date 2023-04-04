@@ -87,11 +87,33 @@
 
             </div>
         </div>
-
-        <div class="RelatedProducts">
-
-        </div>
 </div>
+<div class="RelatedProducts">
+            <h1>Related Products</h1>
+            <div class="Products center">
+                @for(int i = 0; i < 4; i++){
+                    <a asp-controller="Product" asp-action="ProductPage" asp-route-productId="@Model?.RelatedProducts?.ElementAt(i).Id">
+                        <div class="Products_Product">
+                            <div class="Products_Product_Image" style="background-image: url('@Model?.RelatedProducts?.ElementAt(i).MyImages?.ElementAt(0).ImageURL');">
+                            </div>
+                            <div class="Products_Product_Info">
+                                <h3>@Model?.RelatedProducts?.ElementAt(i).Name</h3>
+                                <p>@Model?.RelatedProducts?.ElementAt(i).Category</p>
+                                <div class="Products_Product_Info_Price_Info">
+                                    <p id="CurrentPrice">$@Model?.RelatedProducts?.ElementAt(i).CurrentPrice</p>
+                                    <s>$@Model?.RelatedProducts?.ElementAt(i).OldPrice</s>
+                                </div>
+                            </div>
+                            <div class="AddToCartBtn">
+                                <i class="bi bi-cart-plus"></i>    
+                                Add to cart
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+
 
 <!--________________________________________________________________________________________________-->
 
