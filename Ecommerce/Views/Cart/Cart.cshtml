@@ -1,53 +1,104 @@
 ﻿@model CartVM
 
+<link rel="stylesheet" href="~/css/Cart/Cart.css" type="text/css"/>
+
 @if(Model.QuantityValidityMessage != null)
 {
-	<h1 class="text text-danger">@Model.QuantityValidityMessage</h1>
+	<div id="message-container">
+        <span class="text text-danger">@Model.QuantityValidityMessage</span>
+    </div>
 }
 
-
+@{
+	var SubTotal = 0;
+}
 
 @if(Model.CartItems! == null || Model.CartItems!.Count() >= 1){
 	
 	<div class="cart-mainDiv">
+		<div class="Products">
+			@for(int i = 0; i < Model.CartItems?.Count(); i++)
+			{
+				{
+					SubTotal += int.Parse(Model.CartItems?.ElementAt(i)?.Quantity!) * 
+								int.Parse(Model.CartItems?.ElementAt(i)?.Product?.CurrentPrice!);
+				}
 
-	</div>
+				<div class="Products_Product">
+					<a class="Products_Product_Image" asp-controller="Product" asp-action="ProductPage" asp-route-productId="@Model.CartItems?.ElementAt(i).ProductId"
+						style="background-image: url('@Model.CartItems?.ElementAt(i).Product?.MyImages?.ElementAt(0).ImageURL');">
+
+					</a>
+					<div class="Products_Product_Info">
+						<h3>@Model.CartItems?.ElementAt(i).Name</h3>
+						<p>@Model.CartItems?.ElementAt(i)?.Product?.Category</p>
+						<div class="Products_Product_Info_Price_Info">
+							<p id="CurrentPrice">$@Model.CartItems?.ElementAt(i).Product?.CurrentPrice</p>
+						</div>
+						<div class="Products_Product_Info_QuantitiDiv">
+							<a class="Pluse" asp-controller="Cart" asp-action="IncrementMyItemQuantity" 
+									asp-route-myItemId="@Model.CartItems?.ElementAt(i).Id">
+								<i class="bi bi-plus"></i>
+							</a>
+							<div class="ItemQuantity">
+								@Model.CartItems?.ElementAt(i).Quantity
+								x
+							</div>
+							<a class="Minus" asp-controller="Cart" asp-action="DecrementMyItemQuantity" 
+									asp-route-myItemId="@Model.CartItems?.ElementAt(i).Id">
+								<i class="bi bi-dash"></i>
+							</a>
+						</div>
+						<div class="DeleteItemBtn"> 
+							<a  asp-controller="Cart" asp-action="RemoveMyItemFromTheCart" 
+									asp-route-myItemId="@Model.CartItems?.ElementAt(i)?.Id" ><i class="bi bi-trash3-fill"></i></a>
+						</div>
+					</div>
+				</div>
+				
+			}
+		</div>
 	
-	<table style="display:none;" class="table-bordered">
+		<div class="CartSummery">
+			<div class="CartSummery-TopPart">
+				<div class="CartSummery-Subtotal">
+					<h3>Subtotal</h3>
+					<h4>$@SubTotal</h4>
+				</div>
+				<div class="CartSummery-Tax">
+					<h3>Tax</h3>
+					<h4><b>...</b></h4>
+				</div>
+				<div class="CartSummery-Shipping">
+					<h3>Shipping</h3>
+					<h3>Free</h3>
+				</div>
+			</div>	
+			<div class="CartSummery-BottomPart">
+				<h2>Estimated Total</h2>
+				<h2>$@SubTotal</h2>
+			</div>
 
-		<tr>
-			<th>Name</th>
-			<th>Price</th>
-			<th>Category</th>
-			<th>Quantity</th>
-			<th></th>
-		</tr>
+			<div id="CheckOutBtn" onclick="document.getElementById('CheckOutButton').click();">
+				<a id="CheckOutButton" asp-action="CheckOut" asp-controller="Payment" >Check Out</a>
+			</div>
 
-		@foreach(var item in Model.CartItems!)
-		{
-			<tr>
-				<td>@item.Name</td>
-				<td>@item.Product!.CurrentPrice $</td>
-				<td>@item.Product.Category</td>
-				<td>
-					<a asp-controller="Cart" asp-action="IncrementMyItemQuantity" asp-route-myItemId="@item.Id">
-						<i class="bi bi-plus"></i>
-					</a>
-					<div>@item.Quantity</div>
-					<a asp-controller="Cart" asp-action="DecrementMyItemQuantity" asp-route-myItemId="@item.Id">
-						<i class="bi bi-dash"></i>
-					</a>
-				</td>
-				<td>
-					<a class="btn btn-danger" asp-controller="Cart" asp-action="RemoveMyItemFromTheCart" 
-									asp-route-myItemId="@item.Id" >Delete</a>
-				</td>
-			</tr>
-		}
-	</table>
-	<a asp-action="CheckOut" asp-controller="Payment" >Check Out</a>
+		</div>
+	
+	</div>
 
 }
 else{
-	<h1>The cart is empty</h1>
+
+	<div class="EmptyCart">
+		<h1>The Cart Is Empty</h1>
+		<img src="~/Images/EmptyCart.png" >
+	</div>
+
+}
+
+
+@section Scripts{
+    <script src="~/js/Cart.js" ></script>
+    <partial name="_ValidationScriptsPartial" />
 }

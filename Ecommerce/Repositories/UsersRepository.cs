@@ -31,6 +31,7 @@ namespace Ecommerce.Repositories
                                 .Include(us => us.MyOrders)?
                                 .Include(us => us.MyItems)!
                                     .ThenInclude(it => it.Product)
+                                        .ThenInclude(pr => pr.MyImages)
                                 .FirstOrDefault(us => us.Id == UserId);
 
             if (targetUser == null)

@@ -199,18 +199,24 @@ namespace Ecommerce.Controllers
 				int quantity = int.Parse(targetItem.Quantity!);
 				quantity--;
 				updatedItem.Quantity = quantity.ToString();
-
-
-				//Check if that many item is available in the stock and if not give as much as you can
-				var result = _paymentRepository.CheckAndChangeMyItemsQuantityFromStock(ref targetItem);
+				
 				string? messageAboutItemQuantity = null;
-				if (!result.wasValid && result.message == "Not Available")
-					messageAboutItemQuantity = "This item is no longer available in the stock.";
-				else if (!result.wasValid && result.message == "Decreased")
-					messageAboutItemQuantity = "Quantity has modified, since there is not enough item in the stock";
-
-
-				targetItem.Quantity = updatedItem.Quantity;
+				if (quantity <= 0)
+				{
+					messageAboutItemQuantity = "Number of items must be positive";
+					targetItem.Quantity = 1.ToString();
+				}
+				else
+				{
+					//Check if that many item is available in the stock and if not give as much as you can
+					var result = _paymentRepository.CheckAndChangeMyItemsQuantityFromStock(ref targetItem);
+					if (!result.wasValid && result.message == "Not Available")
+						messageAboutItemQuantity = "This item is no longer available in the stock.";
+					else if (!result.wasValid && result.message == "Decreased")
+						messageAboutItemQuantity = "Quantity has modified, since there is not enough item in the stock";
+					
+					targetItem.Quantity = updatedItem.Quantity;
+				}
 
 				_paymentRepository.UpdateMyItem(targetItem);
 
