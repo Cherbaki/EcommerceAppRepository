@@ -4,26 +4,47 @@
     ViewData["Title"] = "OrderResult";
 }
 
-<div>
+<link rel="stylesheet" href="~/css/Payment/OrderResult.css" />
+
+<div class="OrderResult-MainDiv">
+
     @if (@Model.Approved)
     {
         <h1 class="text text-success">@Model.Information</h1>
 
-        <h2>@Model.ApprovedOrder!.CreationTime</h2>
-        <h2>@Model.ApprovedOrder.PaymentType</h2>
-        <h2>@Model.ApprovedOrder.ShippingAddress!.Address</h2>
-        <h2>@Model.ApprovedOrder.ShippingAddress.City</h2>
-        <h2>@Model.ApprovedOrder.ShippingAddress.PostCode</h2>
-        <div>
+        <div class="OrderResult-Info">
+            <div>
+                <h2 class="OrderResult-Info-Title">Order Placed</h2>
+                <h4 class="OrderResult-Info-Value">@Model.ApprovedOrder!.CreationTime</h4>
+            </div>
+            <div>
+                <h2 class="OrderResult-Info-Title">Payment Method</h2>
+                <h4 class="OrderResult-Info-Value">@Model.ApprovedOrder.PaymentType</h4>
+            </div>
+            <div>
+                <h2 class="OrderResult-Info-Title">Shipping Address</h2>
+                <h4 class="OrderResult-Info-Value">@Model.ApprovedOrder.ShippingAddress!.Address</h4>
+                <h4 class="OrderResult-Info-Value">@Model.ApprovedOrder.ShippingAddress.City</h4>
+                <h4 class="OrderResult-Info-Value">@Model.ApprovedOrder.ShippingAddress.PostCode</h4>
+            </div>
+        </div>
+
+        <div class="OrderResult-Items">
             @foreach(var item in @Model.ApprovedOrder!.MyItems!)
             {
-                <div>
-                    <h3>@item.Name</h3>
-                    <h3>@item.Quantity</h3>
-                    <h3>@item.UnitAmountValue</h3>
-                    <h3>@item.CurrencyCode</h3>
-                    <h3>@item.ShippingValue</h3>
-                </div>
+                <a asp-controller="Product" asp-action="ProductPage" asp-route-productId="@item.ProductId">
+                    <div class="OrderResult-Item">
+                        <div class="OrderResult-Item-Image">
+                            <img src="@item.Product?.MyImages?.ElementAt(0).ImageURL" alt="@item.Name" />
+                        </div>
+                        <div class="OrderResult-Item-Info">
+                            <h3>@item.Name</h3>
+                            <h4>Quantity: @item.Quantity</h4>
+                            <h4>Unit Price: @item.UnitAmountValue @item.CurrencyCode</h4>
+                            <h4>Shipping: @item.ShippingValue @item.CurrencyCode</h4>
+                        </div>
+                    </div>
+                </a>
             }
         </div>
 
@@ -32,4 +53,5 @@
     {
         <h1 class="text text-danger">@Model.Information</h1>
     }
+
 </div>

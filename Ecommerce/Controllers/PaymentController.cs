@@ -480,7 +480,7 @@ namespace Ecommerce.Controllers
 				return RedirectToAction("ErrorPage", "Errors", errorVM);
 			}
 
-
+                
             var targetOrder = await _paymentRepository.GetFullOrderByIdAsync(orderId);
             if(targetOrder == null && info != "Canceled")
             {

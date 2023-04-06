@@ -113,6 +113,7 @@ namespace Ecommerce.Repositories
 				return await _dbContext.MyOrders!
 										.Include(or => or.MyItems)!
                                             .ThenInclude(it => it.Product)
+                                                .ThenInclude(pr => pr!.MyImages)
                                         .Include(or => or.ShippingAddress)
 										.FirstOrDefaultAsync(or => or.Id == orderId);
 			}
