@@ -13,7 +13,7 @@ namespace Ecommerce.Controllers
 		private readonly IUserHelper _userHelper;
 
 
-        public ProductController(AppDbContext dbContext, IProductsRepository productsRepository, IUserHelper userHelper)
+        public ProductController(IProductsRepository productsRepository, IUserHelper userHelper)
         {
 			_productsRepository = productsRepository;
 			_userHelper = userHelper;
@@ -132,3 +132,4 @@ namespace Ecommerce.Controllers
         }
 	}
 }
+

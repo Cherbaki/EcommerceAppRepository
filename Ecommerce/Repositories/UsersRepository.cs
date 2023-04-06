@@ -39,14 +39,12 @@ namespace Ecommerce.Repositories
 
             return targetUser;
         }
-
         public User? GetUser(string UserId)
         {
 			var targetUser = _dbContext.Users?.Find(UserId);
 
 			return targetUser;
 		}
-
         public bool UpdateUser(User user)
         {
             try
@@ -63,3 +61,5 @@ namespace Ecommerce.Repositories
 
     }
 }
+
+

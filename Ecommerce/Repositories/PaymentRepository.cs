@@ -2,7 +2,6 @@
 using Ecommerce.Models;
 using Ecommerce.Services;
 using Microsoft.EntityFrameworkCore;
-using System.Text.RegularExpressions;
 
 namespace Ecommerce.Repositories
 {

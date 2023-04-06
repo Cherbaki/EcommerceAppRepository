@@ -59,7 +59,6 @@ namespace Ecommerce.Repositories
             return relatedProduct;
         }
 
-
         //We have an Action with an identical implementation which is used by the front-end,
         //When this one is used by the backend to validate the quantity validity at different states
         //Of the payment
