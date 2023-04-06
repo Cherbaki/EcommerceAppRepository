@@ -48,10 +48,15 @@
             }
         </div>
 
+
     }
     else
     {
-        <h1 class="text text-danger">@Model.Information</h1>
+        <h1 class="CanceledDiv">@Model.Information</h1>
     }
+
+        <div class="shopping-button-container">
+            <a asp-controller="Product" asp-action="Index" class="shopping-button">Go Back To Shopping</a>
+        </div>
 
 </div>
