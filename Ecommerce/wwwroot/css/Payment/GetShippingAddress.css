@@ -1,0 +1,118 @@
+﻿::placeholder {
+    color: #1a4c43;
+}
+
+select {
+    color: #1a4c43;
+}
+
+span{
+    color:red;
+}
+
+
+.GetShippingAddress-MainDiv {
+    font-family: Segoe UI;
+
+    width: 80%;
+    margin-left: 150px;
+    margin-top: 80px;
+    color: #1a4c43;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 40px;
+}
+
+.GetShippingAddress-MainDiv-Title{
+    width:100%;
+
+    display:flex;
+    justify-content:space-between;  
+    flex-wrap:wrap;
+}
+
+.GetShippingAddress-MainDiv-Title u{
+    color: #1a4c43;
+}
+
+.GetShippingAddress-MainDiv-InputForm{
+    width:70%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+
+    row-gap:20px;
+}
+
+.GetShippingAddress-MainDiv-InputForm-Item{
+    width:100%; 
+}
+
+.InputTag {
+    width: 100%;
+    height: 40px;
+}
+
+#FirstNameDiv, #LastNameDiv, #CityDiv, #PostCodeDiv {
+    width: 47%;
+}
+
+#NextBtnDiv{
+    display:flex;
+    justify-content:end; 
+    align-items:center;
+    height:auto;
+}
+
+#NextBtnDiv a{
+    height:40px;
+    width:20%;
+    
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background-color:#11312b;
+    color:white;    
+}
+
+.GetShippingAddress-MainDiv-Delivery {
+    width: 100%;
+
+    height:80px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+
+    border-top:solid;
+    border-bottom:solid;
+    border-width:1px;
+}
+
+@media(max-width:1000px) {
+
+    .GetShippingAddress-MainDiv {
+        margin-left:50px;
+    }
+
+@media (max-width:430px) {
+
+    .GetShippingAddress-MainDiv {
+        margin-left: 25px;
+    }
+
+    .GetShippingAddress-MainDiv-Title h1, .GetShippingAddress-MainDiv-Title a {
+        width: 100%;
+    }
+
+    .GetShippingAddress-MainDiv-InputForm {
+        width: 100%;
+    }
+
+}

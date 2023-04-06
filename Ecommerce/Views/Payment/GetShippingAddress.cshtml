@@ -4,62 +4,69 @@
     ViewData["Title"] = "GetShippingAddress";
 }
 
-<h1>GetShippingAddress</h1>
+<link rel="stylesheet" href="~/css/Payment/GetShippingAddress.css" type="text/css" />
 
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input id="RealCountryIF" asp-for="Country" type="hidden" class="form-control" />
-                <select id="country">
-                  <option value=""></option>
-                </select>
-                <span id="CountrySpanId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input id="RealCityIF" asp-for="City" type="hidden" class="form-control" />
-                <select id="city">
-                  <option value=""></option>
-                </select>
-                <span id="CitySpanId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PostCode" class="control-label"></label>
-                <input asp-for="PostCode" class="form-control" />
-                <span asp-validation-for="PostCode" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
+<div class="GetShippingAddress-MainDiv">
 
-            <div class="form-group">
-                <input id="RealSubmitFormButtonId" type="submit" style="display:none;" value="Submit" class="btn btn-primary" />
-                <a id="SubmitFormButtonId" class="btn btn-primary">Submit</a>
-            </div>
-        </form>
+    <div class="GetShippingAddress-MainDiv-Title">
+        <h1>
+            Checkout
+        </h1>
+        <a asp-controller="Product" asp-action="Index">
+            <u>Back to shopping</u>
+        </a>
     </div>
+
+    <form class="GetShippingAddress-MainDiv-InputForm" method="post">
+        <div class="GetShippingAddress-MainDiv-InputForm-Item">
+            <input id="RealCountryIF" asp-for="Country" type="hidden" />
+            <select class="InputTag" id="country">
+                <option value="">Country</option>
+            </select>
+            <span id="CountrySpanId"></span>
+        </div>
+        <div id="FirstNameDiv" class="GetShippingAddress-MainDiv-InputForm-Item">
+            <input asp-for="FirstName" class="InputTag" placeholder="First Name" />
+            <span asp-validation-for="FirstName" ></span>
+        </div>
+        <div id="LastNameDiv" class="GetShippingAddress-MainDiv-InputForm-Item">
+            <input asp-for="LastName" class="InputTag"  placeholder="Last Name" />
+            <span asp-validation-for="LastName" ></span>
+        </div>
+        <div class="GetShippingAddress-MainDiv-InputForm-Item">
+            <input asp-for="Address" class="InputTag" placeholder="Address" />
+            <span asp-validation-for="Address" ></span>
+        </div>
+            
+        <div id="CityDiv" class="GetShippingAddress-MainDiv-InputForm-Item">
+            <input id="RealCityIF" asp-for="City" type="hidden" />
+            <select id="city" class="InputTag">
+                <option value=""  >City</option>
+            </select>
+            <span id="CitySpanId" class="text-danger"></span>
+        </div>
+        <div id="PostCodeDiv" class="GetShippingAddress-MainDiv-InputForm-Item">
+            <input asp-for="PostCode" class="InputTag" placeholder="Post Code" />
+            <span asp-validation-for="PostCode" ></span>
+        </div>
+        <div class="GetShippingAddress-MainDiv-InputForm-Item">
+            <input asp-for="Email" class="InputTag" placeholder="Email" />
+            <span asp-validation-for="Email" ></span>
+        </div>
+
+        <div id="NextBtnDiv" class="GetShippingAddress-MainDiv-InputForm-Item">
+            <input id="RealSubmitFormButtonId" type="submit" style="display:none;" value="Submit" />
+            <a id="SubmitFormButtonId" ><p>Next</p></a>
+        </div>
+    </form>
+
+    <div class="GetShippingAddress-MainDiv-Delivery">
+        <h3>Delivery</h3>
+        <p>Standard-Free</p>
+    </div>
+
 </div>
+
 
 @section Scripts{
     <script src="~/js/GetShippingAddress.js" type="text/javascript"></script>
