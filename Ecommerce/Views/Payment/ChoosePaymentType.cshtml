@@ -1,18 +1,23 @@
 ﻿@model int
 @{
-    ViewData["Title"] = "ChoosePaymentType";
+    ViewData["Title"] = "Choose Payment Type";
 }
-<link type="text/css" href="~/css/ChoosePaymentType.css/">
+
+<link rel="stylesheet"  href="~/css/Payment/ChoosePaymentType.css" type="text/css"/>
 
 
-<h1>Choose A Payment Type</h1>
+<div class="ChoosePaymentType_MainDiv">
 
-<form method="post" class="MainForm">
+   
 
-    <div>
-        <button class="btn btn-primary" type="submit" asp-route-orderId="@Model" 
-                    asp-route-paymentType="PayPalPay">Pay With PayPal</button>
-    </div>
+    <form method="post" class="MainForm">
+        <h1>Choose A Payment Type</h1>
 
-</form>
+        <div class="ChoosePaymentType_MainDiv_PayPalDiv" onclick="document.getElementById('PayPalBtn').click();">
+            <button style="display:none;" id="PayPalBtn" class="btn btn-primary" type="submit" asp-route-orderId="@Model" 
+                        asp-route-paymentType="PayPalPay">Pay With PayPal</button>
+        </div>
 
+    </form>
+
+</div>

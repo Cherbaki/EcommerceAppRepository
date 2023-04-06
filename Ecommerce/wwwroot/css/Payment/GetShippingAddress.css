@@ -80,6 +80,10 @@ span{
     color:white;    
 }
 
+#NextBtnDiv a:hover{
+    cursor:pointer;
+}
+
 .GetShippingAddress-MainDiv-Delivery {
     width: 100%;
 

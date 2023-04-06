@@ -1,0 +1,60 @@
+﻿
+
+.ChoosePaymentType_MainDiv {
+    font-family: 'Yu Gothic';
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap; 
+
+    height:600px;
+    color: rgb(82, 69, 163);
+}
+
+.MainForm{
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+
+    border:solid;
+    border-width:thin;
+    width:30%;
+    height:70%;
+}
+
+.ChoosePaymentType_MainDiv h1{
+    width:100%;
+    text-align:center;
+}
+
+.ChoosePaymentType_MainDiv_PayPalDiv{
+    display:flex;
+    justify-content:center; 
+    align-items:center; 
+    width:90%;
+    height:100px;
+
+    background-image:url('../../Images/PayPalButton.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:contain;    
+}
+
+.ChoosePaymentType_MainDiv_PayPalDiv:hover{
+    cursor:pointer;
+}
+
+@media (max-width:1000px) {
+    .MainForm {
+        width: 70%;
+    }
+}
+
+@media (max-width:430px) {
+    .MainForm {
+        width: 90%;
+    }
+}
