@@ -4,8 +4,12 @@
     ViewData["Title"] = "ErrorPage";
 }
 
-<h1>ErrorPage</h1>
+<link rel="stylesheet" href="~/css/Errors/ErrorPage.css" type="text/css"/>
 
-<div>
-    <h1>@Model.Message</h1>
+
+<div class="error-container">
+    <h1 class="error-title">Error</h1>
+    <p class="error-message">@Model.Message</p>
+    <img src="~/Images//ErrorSmile.png" width="100%"/>
+    <a asp-controller="Product" asp-action="Index" class="btn error-btn">Back to Home</a>
 </div>
